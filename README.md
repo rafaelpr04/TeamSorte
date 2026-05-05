@@ -1,4 +1,5 @@
 ⚽ Team Sorte
+
 Uma aplicação móvel desenvolvida com Flutter para organizar partidas de futebol de forma justa e rápida. Chega de discussões na hora de montar os times: o app utiliza um sistema de níveis para garantir que as partidas sejam equilibradas e competitivas.
 
 🚀 Funcionalidades
