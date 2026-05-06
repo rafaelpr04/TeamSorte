@@ -1,21 +1,57 @@
-⚽ Team Sorte
+# ⚽ Team Sorte
 
-Uma aplicação móvel desenvolvida com Flutter para organizar partidas de futebol de forma justa e rápida. Chega de discussões na hora de montar os times: o app utiliza um sistema de níveis para garantir que as partidas sejam equilibradas e competitivas.
+Aplicação móvel desenvolvida com **Flutter** para organização eficiente e equilibrada de partidas de futebol. O objetivo é eliminar decisões subjetivas na formação de times, utilizando um sistema baseado em níveis técnicos para gerar equipes justas e competitivas de forma automática.
 
-🚀 Funcionalidades
-Cadastro de Jogadores: Adicione nomes e atribua uma nota técnica (ex: 1 a 5 estrelas).
+---
 
-Sorteio Inteligente: O algoritmo distribui os jogadores entre os times baseando-se na média de habilidade total.
+## 📱 Visão Geral
 
-Gerenciamento de Presença: Marque rapidamente quem chegou ao campo antes de rodar o sorteio.
+O **Team Sorte** foi criado para simplificar a rotina de jogadores amadores e grupos de futebol. Com poucos toques, é possível gerenciar participantes, registrar presença e gerar times balanceados, otimizando o tempo antes das partidas.
 
-Interface Intuitiva: UI limpa e moderna, otimizada para uso rápido à beira do gramado.
+---
 
-Compartilhamento: Exporte a lista dos times formados diretamente para o WhatsApp do grupo.
+## 🚀 Funcionalidades
 
-🛠️ Tecnologias Utilizadas
-Flutter - Framework UI.
+- **Cadastro de Jogadores**  
+  Permite adicionar jogadores e atribuir níveis técnicos (ex: 1 a 5 estrelas), facilitando o balanceamento das equipes.
 
-Dart - Linguagem de programação.
+- **Sorteio Inteligente de Times**  
+  Algoritmo que distribui os jogadores com base na média de habilidade, garantindo maior equilíbrio entre os times.
 
-SQLite/Shared Preferences - Armazenamento local dos jogadores.
+- **Controle de Presença**  
+  Marque rapidamente os jogadores presentes antes de realizar o sorteio.
+
+- **Interface Intuitiva**  
+  Design simples, moderno e otimizado para uso rápido em ambientes externos.
+
+- **Compartilhamento de Times**  
+  Exportação prática dos times formados para aplicativos de mensagens, como WhatsApp.
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+- **Flutter** — Framework para desenvolvimento multiplataforma
+- **Dart** — Linguagem de programação principal
+- **SQLite / SharedPreferences** — Persistência de dados local
+
+---
+
+## 🎯 Objetivo do Projeto
+
+Fornecer uma solução prática e confiável para grupos de futebol que desejam formar equipes equilibradas de maneira rápida, reduzindo discussões e melhorando a experiência das partidas.
+
+---
+
+## 📌 Possíveis Evoluções
+
+- Histórico de partidas
+- Estatísticas de desempenho dos jogadores
+- Sistema de ranking automático
+- Integração com backend para sincronização em nuvem
+
+---
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Consulte o arquivo `LICENSE` para mais detalhes.
