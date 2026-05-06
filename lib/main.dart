@@ -1,15 +1,9 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'models/jogador.dart';
 
 void main() {
   runApp(const MyApp());
-}
-
-class Jogador {
-  String nome;
-  int nivel;
-
-  Jogador(this.nome, this.nivel);
 }
 
 class MyApp extends StatelessWidget {
