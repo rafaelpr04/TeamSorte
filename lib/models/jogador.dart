@@ -4,5 +4,5 @@ class Jogador {
   final String nome;
   final int nivel;
 
-  Jogador(this.nome, this.nivel);
+  Jogador({required this.nome, required this.nivel});
 }
