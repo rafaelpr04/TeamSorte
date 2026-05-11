@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'screens/home_page.dart';
+import 'themes/app_theme.dart';
 
 void main() {
   runApp(
@@ -9,6 +10,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+
   const MyApp({super.key});
 
   @override
@@ -20,10 +22,7 @@ class MyApp extends StatelessWidget {
 
       title: 'Team Sort',
 
-      theme: ThemeData(
-        colorSchemeSeed: Colors.indigo,
-        useMaterial3: true,
-      ),
+      theme: AppTheme.lightTheme,
 
       home: const HomePage(),
     );
