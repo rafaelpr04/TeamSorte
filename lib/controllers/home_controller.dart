@@ -3,7 +3,6 @@ import '../services/balanceador_service.dart';
 
 // Controlador principal do aplicativo, responsável por gerenciar os jogadores, gerar os times e calcular o balanceamento
 class HomeController {
-
   List<Jogador> jogadores = [];
 
   List<List<Jogador>> times = [];
@@ -12,13 +11,10 @@ class HomeController {
 
   double balanceamento = 0;
 
-  void adicionarJogador({
-    required String nome,
-    required int nivel,
-  }) {
-
+  void adicionarJogador({required String nome, required int nivel}) {
     jogadores.add(
       Jogador(
+        id: '${DateTime.now().millisecondsSinceEpoch}',
         nome: nome,
         nivel: nivel,
       ),
@@ -26,9 +22,7 @@ class HomeController {
   }
 
   void gerarTimes(int jogadoresPorTime) {
-
-    final resultado =
-        BalanceadorService.gerarTimes(
+    final resultado = BalanceadorService.gerarTimes(
       jogadores: jogadores,
       jogadoresPorTime: jogadoresPorTime,
     );
@@ -37,15 +31,10 @@ class HomeController {
 
     banco = resultado["banco"];
 
-    balanceamento =
-        resultado["balanceamento"];
+    balanceamento = resultado["balanceamento"];
   }
 
   int somaTime(List<Jogador> time) {
-
-    return time.fold(
-      0,
-      (soma, jogador) => soma + jogador.nivel,
-    );
+    return time.fold(0, (soma, jogador) => soma + jogador.nivel);
   }
 }
