@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teamsort_application/models/jogador.dart';
 
 import '../controllers/home_controller.dart';
 import '../widgets/estrelas_widget.dart';
@@ -48,6 +49,43 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       controller.gerarTimes(jogadoresPorTime);
     });
+  }
+
+  void editarNome(Jogador jogador) {
+    final editController = TextEditingController(text: jogador.nome);
+
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Editar nome'),
+        content: TextField(
+          controller: editController,
+          autofocus: true,
+          decoration: const InputDecoration(
+            labelText: 'Novo nome',
+            border: OutlineInputBorder(),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancelar'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              final novoNome = editController.text.trim();
+              if (novoNome.isNotEmpty) {
+                setState(() {
+                  controller.editarNomeJogador(jogador, novoNome);
+                });
+              }
+              Navigator.pop(context);
+            },
+            child: const Text('Salvar'),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -218,6 +256,7 @@ class _HomePageState extends State<HomePage> {
                   ...controller.jogadores.map(
                     (jogador) => JogadorTile(
                       jogador: jogador,
+                      onEditar: () => editarNome(jogador),
                       onRemover: () {
                         setState(() {
                           controller.removerJogador(jogador);

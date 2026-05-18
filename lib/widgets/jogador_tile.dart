@@ -5,12 +5,14 @@ import 'estrelas_widget.dart';
 
 class JogadorTile extends StatelessWidget {
   final Jogador jogador;
-  final VoidCallback? onRemover; // <-- NOVO PARÂMETRO
+  final VoidCallback? onRemover;
+  final VoidCallback? onEditar; // <-- NOVO
 
   const JogadorTile({
     super.key,
     required this.jogador,
-    this.onRemover, // <-- NOVO
+    this.onRemover,
+    this.onEditar, // <-- NOVO
   });
 
   @override
@@ -22,7 +24,13 @@ class JogadorTile extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           EstrelasWidget(valor: jogador.nivel),
-          if (onRemover != null) // <-- NOVO: só mostra se tiver callback
+          if (onEditar != null)
+            IconButton(
+              icon: const Icon(Icons.edit_outlined, color: Colors.blue),
+              tooltip: 'Editar nome',
+              onPressed: onEditar,
+            ),
+          if (onRemover != null)
             IconButton(
               icon: const Icon(Icons.delete_outline, color: Colors.red),
               tooltip: 'Remover jogador',
