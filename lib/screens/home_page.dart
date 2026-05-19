@@ -6,6 +6,7 @@ import '../widgets/estrelas_widget.dart';
 import '../widgets/jogador_tile.dart';
 import '../widgets/time_card.dart';
 import 'resultado_screen.dart';
+
 // Tela principal do aplicativo, onde o usuário pode adicionar jogadores, configurar o número de jogadores por time e gerar os times balanceados
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -35,28 +36,28 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-void gerarTimes() {
-  if (controller.jogadores.length < jogadoresPorTime * 2) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text("Jogadores insuficientes para formar ao menos 2 times"),
+  void gerarTimes() {
+    if (controller.jogadores.length < jogadoresPorTime * 2) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Jogadores insuficientes para formar ao menos 2 times"),
+        ),
+      );
+      return;
+    }
+
+    setState(() {
+      controller.gerarTimes(jogadoresPorTime);
+    });
+
+    // NAVEGA para a tela de resultado
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => ResultadoScreen(controller: controller),
       ),
     );
-    return;
   }
-
-  setState(() {
-    controller.gerarTimes(jogadoresPorTime);
-  });
-
-  // NAVEGA para a tela de resultado
-  Navigator.push(
-    context,
-    MaterialPageRoute(
-      builder: (_) => ResultadoScreen(controller: controller),
-    ),
-  );
-}
 
   void editarJogador(Jogador jogador) {
     final editController = TextEditingController(text: jogador.nome);
