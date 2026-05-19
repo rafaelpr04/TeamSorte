@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../controllers/home_controller.dart';
+import '../screens/cronometro_screen.dart';
 import '../widgets/jogador_tile.dart';
 
 class ResultadoScreen extends StatelessWidget {
@@ -25,6 +26,16 @@ class ResultadoScreen extends StatelessWidget {
         title: const Text('Resultado'),
         centerTitle: true,
         actions: [
+          IconButton(
+            icon: const Icon(Icons.timer),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const CronometroScreen()),
+              );
+            },
+            tooltip: 'Cronômetro',
+          ),
           IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () => Navigator.pop(context),
