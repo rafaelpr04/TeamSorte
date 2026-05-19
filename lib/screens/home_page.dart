@@ -58,39 +58,57 @@ void gerarTimes() {
   );
 }
 
-  void editarNome(Jogador jogador) {
+  void editarJogador(Jogador jogador) {
     final editController = TextEditingController(text: jogador.nome);
+    int novoNivel = jogador.nivel;
 
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Editar nome'),
-        content: TextField(
-          controller: editController,
-          autofocus: true,
-          decoration: const InputDecoration(
-            labelText: 'Novo nome',
-            border: OutlineInputBorder(),
+      builder: (context) => StatefulBuilder(
+        builder: (context, setStateDialog) => AlertDialog(
+          title: const Text('Editar jogador'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: editController,
+                autofocus: true,
+                decoration: const InputDecoration(
+                  labelText: 'Novo nome',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 12),
+              EstrelasWidget(
+                valor: novoNivel,
+                interativo: true,
+                onAlterar: (valor) {
+                  setStateDialog(() {
+                    novoNivel = valor;
+                  });
+                },
+              ),
+            ],
           ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Cancelar'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                final novoNome = editController.text.trim();
+                if (novoNome.isNotEmpty) {
+                  setState(() {
+                    controller.editarJogador(jogador, novoNome, novoNivel);
+                  });
+                }
+                Navigator.pop(context);
+              },
+              child: const Text('Salvar'),
+            ),
+          ],
         ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Cancelar'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              final novoNome = editController.text.trim();
-              if (novoNome.isNotEmpty) {
-                setState(() {
-                  controller.editarNomeJogador(jogador, novoNome);
-                });
-              }
-              Navigator.pop(context);
-            },
-            child: const Text('Salvar'),
-          ),
-        ],
       ),
     );
   }
@@ -263,7 +281,7 @@ void gerarTimes() {
                   ...controller.jogadores.map(
                     (jogador) => JogadorTile(
                       jogador: jogador,
-                      onEditar: () => editarNome(jogador),
+                      onEditar: () => editarJogador(jogador),
                       onRemover: () {
                         setState(() {
                           controller.removerJogador(jogador);

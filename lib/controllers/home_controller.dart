@@ -33,6 +33,11 @@ class HomeController {
     jogador.nome = novoNome;
   }
 
+  void editarJogador(Jogador jogador, String novoNome, int novoNivel) {
+    jogador.nome = novoNome;
+    jogador.nivel = novoNivel;
+  }
+
   void gerarTimes(int jogadoresPorTime) {
     final resultado = BalanceadorService.gerarTimes(
       jogadores: jogadores,

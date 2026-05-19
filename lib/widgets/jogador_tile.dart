@@ -27,7 +27,7 @@ class JogadorTile extends StatelessWidget {
           if (onEditar != null)
             IconButton(
               icon: const Icon(Icons.edit_outlined, color: Colors.blue),
-              tooltip: 'Editar nome',
+              tooltip: 'Editar jogador',
               onPressed: onEditar,
             ),
           if (onRemover != null)
