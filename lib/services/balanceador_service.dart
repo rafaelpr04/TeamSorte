@@ -26,9 +26,7 @@ class BalanceadorService {
 
     _distribuirZigZag(participantes, times);
 
-    double desvio = calcularDesvioPadraoTimes(times);
-
-    double balanceamento = desvio == 0 ? 100 : 100 / (1 + desvio);
+        double balanceamento = calcularBalanceamento(times);
 
     return {"times": times, "banco": banco, "balanceamento": balanceamento};
   }

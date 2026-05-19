@@ -3,7 +3,7 @@ import 'dart:math';
 import '../models/jogador.dart';
 
 // Função para calcular o desvio padrão dos times, usada para medir o balanceamento
-double calcularDesvioPadraoTimes(List<List<Jogador>> times) {
+double calcularBalanceamento(List<List<Jogador>> times) {
   int nTimes = times.length;
 
   List<int> somaTimes = [];
@@ -28,5 +28,5 @@ double calcularDesvioPadraoTimes(List<List<Jogador>> times) {
 
   double variancia = somaQuadrados / nTimes;
 
-  return sqrt(variancia);
+  return 100 * (1 - sqrt(variancia)/media);
 }
