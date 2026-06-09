@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../controllers/cronometro_controller.dart';
+import '../widgets/sports_background.dart';
 
 class CronometroScreen extends StatefulWidget {
   const CronometroScreen({super.key});
@@ -72,15 +73,22 @@ class _CronometroScreenState extends State<CronometroScreen> {
     final canResume = controller.isPaused && controller.remaining.inSeconds > 0;
 
     return Scaffold(
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
         title: const Text('Cronômetro'),
         centerTitle: true,
+        elevation: 0,
+        foregroundColor: Colors.white,
         backgroundColor: const Color(0xFF4F46E5),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
+      body: SportsBackground(
+        child: SafeArea(
+          top: false,
+          child: ResponsiveCenter(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                children: [
             Card(
               elevation: 3,
               shape: RoundedRectangleBorder(
@@ -146,7 +154,13 @@ class _CronometroScreenState extends State<CronometroScreen> {
                               : (controller.isPaused
                                     ? 'Pausado'
                                     : 'Pronto para iniciar')),
-                    style: const TextStyle(fontSize: 16, color: Colors.black54),
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Theme.of(context)
+                          .colorScheme
+                          .onSurface
+                          .withOpacity(0.7),
+                    ),
                   ),
                 ],
               ),
@@ -197,7 +211,10 @@ class _CronometroScreenState extends State<CronometroScreen> {
                 ),
               ],
             ),
-          ],
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );

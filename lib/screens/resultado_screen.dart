@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../controllers/home_controller.dart';
 import '../screens/cronometro_screen.dart';
 import '../widgets/jogador_tile.dart';
+import '../widgets/sports_background.dart';
 
 class ResultadoScreen extends StatelessWidget {
   final HomeController controller;
@@ -19,10 +20,11 @@ class ResultadoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
         backgroundColor: const Color(0xFF4F46E5),
         foregroundColor: Colors.white,
+        elevation: 0,
         title: const Text('Resultado'),
         centerTitle: true,
         actions: [
@@ -43,7 +45,11 @@ class ResultadoScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
+      body: SportsBackground(
+        child: SafeArea(
+          top: false,
+          child: ResponsiveCenter(
+            child: Column(
         children: [
           // BARRA DE BALANCEAMENTO
           Container(
@@ -139,7 +145,6 @@ class ResultadoScreen extends StatelessWidget {
                 // BANCO
                 if (controller.banco.isNotEmpty)
                   Card(
-                    color: Colors.grey.shade200,
                     child: ExpansionTile(
                       leading: const Icon(Icons.event_seat),
                       title: const Text('Banco'),
@@ -152,6 +157,9 @@ class ResultadoScreen extends StatelessWidget {
             ),
           ),
         ],
+            ),
+          ),
+        ),
       ),
     );
   }

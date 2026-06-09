@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'screens/splash_screen.dart'; // <-- muda o import
+import 'controllers/theme_controller.dart';
+import 'screens/splash_screen.dart';
 import 'themes/app_theme.dart';
 
 void main() {
@@ -11,11 +12,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Team Sort',
-      theme: AppTheme.lightTheme,
-      home: const SplashScreen(), // <-- muda aqui
+    return ValueListenableBuilder<ThemeMode>(
+      valueListenable: ThemeController.instance.modo,
+      builder: (context, modo, _) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Team Sort',
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          themeMode: modo,
+          home: const SplashScreen(),
+        );
+      },
     );
   }
 }

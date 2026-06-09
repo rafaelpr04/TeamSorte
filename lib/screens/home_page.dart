@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:teamsort_application/models/jogador.dart';
 
 import '../controllers/home_controller.dart';
+import '../controllers/theme_controller.dart';
 import '../widgets/estrelas_widget.dart';
 import '../widgets/jogador_tile.dart';
+import '../widgets/sports_background.dart';
 import '../widgets/time_card.dart';
 import 'resultado_screen.dart';
 
@@ -117,13 +119,37 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Team Sort"), centerTitle: true),
+      backgroundColor: Colors.transparent,
 
-      body: Padding(
-        padding: const EdgeInsets.all(16),
+      appBar: AppBar(
+        title: const Text("Team Sort"),
+        centerTitle: true,
+        backgroundColor: const Color(0xFF4F46E5),
+        foregroundColor: Colors.white,
+        elevation: 0,
+        actions: [
+          IconButton(
+            icon: Icon(
+              ThemeController.instance.isEscuro
+                  ? Icons.light_mode
+                  : Icons.dark_mode,
+            ),
+            tooltip: ThemeController.instance.isEscuro
+                ? 'Modo claro'
+                : 'Modo escuro',
+            onPressed: ThemeController.instance.alternar,
+          ),
+        ],
+      ),
 
-        child: Column(
-          children: [
+      body: SportsBackground(
+        child: SafeArea(
+          top: false,
+          child: ResponsiveCenter(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                children: [
             //-----------------------------------
             // CARD DE INPUT
             //-----------------------------------
@@ -324,8 +350,6 @@ class _HomePageState extends State<HomePage> {
                     //-----------------------------------
                     if (controller.banco.isNotEmpty)
                       Card(
-                        color: Colors.grey.shade200,
-
                         child: ExpansionTile(
                           title: const Text("Banco"),
 
@@ -338,7 +362,10 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-          ],
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );
